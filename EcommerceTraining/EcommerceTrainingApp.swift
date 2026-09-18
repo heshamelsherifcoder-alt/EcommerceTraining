@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct EcommerceTrainingApp: App {
+    init() {
+        DatadogBootstrapper.start()
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

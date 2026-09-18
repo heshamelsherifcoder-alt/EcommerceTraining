@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		54D07782305D173800215CA2 /* DatadogCore in Frameworks */ = {isa = PBXBuildFile; productRef = 54D07781305D173800215CA2 /* DatadogCore */; };
+		54D07784305D173800215CA2 /* DatadogCrashReporting in Frameworks */ = {isa = PBXBuildFile; productRef = 54D07783305D173800215CA2 /* DatadogCrashReporting */; };
+		54D07786305D173800215CA2 /* DatadogLogs in Frameworks */ = {isa = PBXBuildFile; productRef = 54D07785305D173800215CA2 /* DatadogLogs */; };
+		54D07788305D173800215CA2 /* DatadogProfiling in Frameworks */ = {isa = PBXBuildFile; productRef = 54D07787305D173800215CA2 /* DatadogProfiling */; };
+		54D0778A305D173800215CA2 /* DatadogRUM in Frameworks */ = {isa = PBXBuildFile; productRef = 54D07789305D173800215CA2 /* DatadogRUM */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		548233CB305B0C1600415A57 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +35,8 @@
 		548233BD305B0C1400415A57 /* EcommerceTraining.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EcommerceTraining.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		548233CA305B0C1600415A57 /* EcommerceTrainingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcommerceTrainingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		548233D4305B0C1600415A57 /* EcommerceTrainingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EcommerceTrainingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5A0002000000000000000001 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		5A0002000000000000000002 /* Secrets.xcconfig.example */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig.example; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +62,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54D07784305D173800215CA2 /* DatadogCrashReporting in Frameworks */,
+				54D0778A305D173800215CA2 /* DatadogRUM in Frameworks */,
+				54D07786305D173800215CA2 /* DatadogLogs in Frameworks */,
+				54D07788305D173800215CA2 /* DatadogProfiling in Frameworks */,
+				54D07782305D173800215CA2 /* DatadogCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +90,8 @@
 		548233B4305B0C1400415A57 = {
 			isa = PBXGroup;
 			children = (
+				5A0002000000000000000001 /* Secrets.xcconfig */,
+				5A0002000000000000000002 /* Secrets.xcconfig.example */,
 				548233BF305B0C1400415A57 /* EcommerceTraining */,
 				548233CD305B0C1600415A57 /* EcommerceTrainingTests */,
 				548233D7305B0C1600415A57 /* EcommerceTrainingUITests */,
@@ -102,6 +119,9 @@
 				548233B9305B0C1400415A57 /* Sources */,
 				548233BA305B0C1400415A57 /* Frameworks */,
 				548233BB305B0C1400415A57 /* Resources */,
+				5A0001000000000000000002 /* SwiftFormat */,
+				5A0001000000000000000001 /* SwiftLint */,
+				5A0001000000000000000003 /* Upload dSYMs to Datadog */,
 			);
 			buildRules = (
 			);
@@ -112,6 +132,11 @@
 			);
 			name = EcommerceTraining;
 			packageProductDependencies = (
+				54D07781305D173800215CA2 /* DatadogCore */,
+				54D07783305D173800215CA2 /* DatadogCrashReporting */,
+				54D07785305D173800215CA2 /* DatadogLogs */,
+				54D07787305D173800215CA2 /* DatadogProfiling */,
+				54D07789305D173800215CA2 /* DatadogRUM */,
 			);
 			productName = EcommerceTraining;
 			productReference = 548233BD305B0C1400415A57 /* EcommerceTraining.app */;
@@ -195,6 +220,9 @@
 			);
 			mainGroup = 548233B4305B0C1400415A57;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				54D07780305D173800215CA2 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 548233BE305B0C1400415A57 /* Products */;
 			projectDirPath = "";
@@ -230,6 +258,66 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5A0001000000000000000001 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT\"\nexport PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, run 'brew install swiftlint'\"\nfi\n";
+		};
+		5A0001000000000000000002 /* SwiftFormat */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftFormat;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT\"\nexport PATH=\"$PATH:/opt/homebrew/bin:/usr/local/bin\"\nif which swiftformat > /dev/null; then\n  swiftformat .\nelse\n  echo \"warning: SwiftFormat not installed, run 'brew install swiftformat'\"\nfi\n";
+		};
+		5A0001000000000000000003 /* Upload dSYMs to Datadog */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Upload dSYMs to Datadog";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if [ -z \"$DATADOG_API_KEY\" ]; then\n  echo \"warning: DATADOG_API_KEY not set, skipping dSYM upload. Copy Secrets.xcconfig.example to Secrets.xcconfig and fill in a real key.\"\n  exit 0\nfi\nif [ \"$CONFIGURATION\" != \"Release\" ]; then\n  echo \"note: skipping dSYM upload for non-Release configuration\"\n  exit 0\nfi\nexport DATADOG_API_KEY\nnpx --yes @datadog/datadog-ci dsyms upload \"$DWARF_DSYM_FOLDER_PATH\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		548233B9305B0C1400415A57 /* Sources */ = {
@@ -392,6 +480,7 @@
 		};
 		548233DF305B0C1600415A57 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A0002000000000000000001 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -399,6 +488,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8ZNY5HD6Q9;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -424,6 +514,7 @@
 		};
 		548233E0305B0C1600415A57 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A0002000000000000000001 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -431,6 +522,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 8ZNY5HD6Q9;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -578,6 +670,45 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		54D07780305D173800215CA2 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Datadog/dd-sdk-ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.17.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		54D07781305D173800215CA2 /* DatadogCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D07780305D173800215CA2 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogCore;
+		};
+		54D07783305D173800215CA2 /* DatadogCrashReporting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D07780305D173800215CA2 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogCrashReporting;
+		};
+		54D07785305D173800215CA2 /* DatadogLogs */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D07780305D173800215CA2 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogLogs;
+		};
+		54D07787305D173800215CA2 /* DatadogProfiling */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D07780305D173800215CA2 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogProfiling;
+		};
+		54D07789305D173800215CA2 /* DatadogRUM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D07780305D173800215CA2 /* XCRemoteSwiftPackageReference "dd-sdk-ios" */;
+			productName = DatadogRUM;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 548233B5305B0C1400415A57 /* Project object */;
 }
